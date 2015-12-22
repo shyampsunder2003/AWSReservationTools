@@ -40,3 +40,10 @@ Disclaimers
 Windows Server 2003 Web or Windows Server 2003 Standard
 
 2. The script has support for tenancy but has not been tested for it.
+
+To-Do
+-------------
+
+1. Publish a script which takes the instance ID as the argument and reserves an instance with identical parameters. Will take a lot of manual work out of reservations.
+
+2. Show the suggestions in the reservation check script in a better way.
