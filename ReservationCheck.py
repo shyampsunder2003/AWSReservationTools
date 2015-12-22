@@ -29,7 +29,7 @@ for region in regionList:
     response = client.describe_reserved_instances()
     for reservation in response['ReservedInstances']:
         if reservation['State'] == 'active':
-            uniqueKey = str(reservation['InstanceType']) + '_' + str(reservation['AvailabilityZone']) + '_' + str(reservation['ProductDescription'])
+            uniqueKey = str(reservation['InstanceType']) + '_' + str(reservation['AvailabilityZone']) + '_' + str(reservation['ProductDescription'] + '_' + str(reservation['InstanceTenancy']))
             if uniqueKey in activeReservations.keys():
                 activeReservations[uniqueKey]+=reservation['InstanceCount']
             else:
@@ -58,7 +58,14 @@ for region in regionList:
             else:
                 OS = 'Windows'
         AZ = instance.placement['AvailabilityZone']
-        uniqueKey = type + '_' + AZ + '_'+ OS
+        if vpc == 'Yes':
+            vpcid = instance.vpc_id
+            print vpcid
+            vpcResource = resource.Vpc(vpcid)
+            tenancy = vpcResource.instance_tenancy
+        else:
+            tenancy = 'default'
+        uniqueKey = type + '_' + AZ + '_' + OS + '_' + tenancy
         if uniqueKey in activeReservations.keys():
             # if activeReservations[uniqueKey] > 0:
             activeReservations[uniqueKey]-=1
@@ -79,6 +86,7 @@ for region in regionList:
             print "Instance Type: " + data[0],
             print "Region: " + data[1],
             print "OS: " + data[2],
+            print "Tenancy: " + data[3],
             print "Count: " + str(reservation[reservation.keys()[0]])
     reservationPossibile= False
     for value in activeReservations.values():
@@ -95,6 +103,7 @@ for region in regionList:
                 print "Instance Type: " + data[0],
                 print "Region: " + data[1],
                 print "OS: " + data[2],
+                print "Tenancy: " + data[3],
                 print "Running count: " + str(runningInstances[key]),
                 print "Reserved count: " + str(reservationsRunning[key]),
                 print "Difference: " + str(activeReservations[key]*-1)
@@ -112,6 +121,7 @@ for region in regionList:
                 print "Instance Type: " + data[0],
                 print "Region: " + data[1],
                 print "OS: " + data[2],
+                print "Tenancy: " + data[3],
                 print "Running count: " + str(runningInstances[key])
                 possibilityCount+=1
 
