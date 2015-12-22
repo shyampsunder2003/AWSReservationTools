@@ -12,3 +12,9 @@ Prerequisites:
 Valid Regions
 ------------- 
 eu-west-1, ap-southeast-1, ap-southeast-2, eu-central-1, ap-northeast-1, us-east-1, sa-east-1, us-west-1, us-west-2
+
+Script Usage
+------------- 
+```
+python checkReservation.py [Region] [Number of Possibilities]
+```
