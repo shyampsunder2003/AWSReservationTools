@@ -17,4 +17,21 @@ Script Usage
 ------------- 
 ```
 python checkReservation.py [Region] [Number of Possibilities]
+
+Region (Optional): Specifies the region where this script needs to be run
+Number of Possibilities (Optional): Specifies the number of suggesstions the script can make per region about improving reservations
 ```
+This script takes into account the OS, Region, AZ, Type and VPC status of an instance for mapping it to an AWS Reservation.
+
+The OS Field has been broadly split into:
+
+1. Unix/Linux (Amazon VPC)
+
+2. Unix/Linux
+
+3. Windows (Amazon VPC)
+
+4. Windows
+
+Please note that AWS has several premium OS offerings which will not be detected by this script because there is no reliable way of getting this information via Boto/AWS CLI. Example:
+Windows Server 2003 Web or Windows Server 2003 Standard
