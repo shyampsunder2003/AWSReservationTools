@@ -9,3 +9,8 @@ Prerequisites:
 
 3. Python 2.xx
 
+Valid Regions:
+
+First Header
+------------- 
+us-west-1
