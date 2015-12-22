@@ -1,13 +1,26 @@
 import pprint
 import shlex
 import subprocess
+from sys import argv
 import boto3
+import sys
+
 numberOfPossibilities = 5
-# regions = subprocess.Popen("aws ec2 describe-regions | awk -F ' ' '{print $3}'", shell=True,stdout=subprocess.PIPE).stdout.read()      # Since there is no API in boto3 as of now which allows you to retrieve all regions during runtime,
-# regionList = str(regions)[:-1].split('\n')                                                                                             # we retrieve the information from AWS CLI and get the regions.
-# regionList = ['eu-west-1', 'ap-southeast-1', 'ap-southeast-2', 'eu-central-1', 'ap-northeast-1', 'us-east-1', 'sa-east-1', 'us-west-1', 'us-west-2']
-regionList = ['us-west-1']
-print regionList
+
+if len(sys.argv) > 2:
+    script, regionMentioned, numberOfPossibilities = argv
+elif len(sys.argv) > 1:
+    script, regionMentioned = argv
+else:
+    regionMentioned = ""
+numberOfPossibilities = int(numberOfPossibilities)
+print regionMentioned, numberOfPossibilities
+if regionMentioned == "":
+    regionList = ['eu-west-1', 'ap-southeast-1', 'ap-southeast-2', 'eu-central-1', 'ap-northeast-1', 'us-east-1', 'sa-east-1', 'us-west-1', 'us-west-2']
+else:
+    regionList = [regionMentioned]
+
+
 for region in regionList:
     print "Checking " + region
     activeReservations = dict()
