@@ -60,7 +60,6 @@ for region in regionList:
         AZ = instance.placement['AvailabilityZone']
         if vpc == 'Yes':
             vpcid = instance.vpc_id
-            print vpcid
             vpcResource = resource.Vpc(vpcid)
             tenancy = vpcResource.instance_tenancy
         else:
