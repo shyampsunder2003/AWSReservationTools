@@ -9,8 +9,6 @@ Prerequisites:
 
 3. Python 2.xx
 
-Valid Regions:
-
-First Header
+Valid Regions
 ------------- 
-us-west-1
+'eu-west-1', 'ap-southeast-1', 'ap-southeast-2', 'eu-central-1', 'ap-northeast-1', 'us-east-1', 'sa-east-1', 'us-west-1', 'us-west-2'
