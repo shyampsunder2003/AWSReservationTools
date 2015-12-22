@@ -33,5 +33,10 @@ The OS Field has been broadly split into:
 
 4. Windows
 
-Please note that AWS has several premium OS offerings which will not be detected by this script because there is no reliable way of getting this information via Boto/AWS CLI. Example:
+Disclaimers
+-------------
+
+1. Please note that AWS has several premium OS offerings which will not be detected by this script because there is no reliable way of getting this information via Boto/AWS CLI. Example:
 Windows Server 2003 Web or Windows Server 2003 Standard
+
+2. The script has support for tenancy but has not been tested for it.
